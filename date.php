@@ -1,37 +1,37 @@
 <?php
 $_GET['start'];
 echo ',';
-$tari = date('o');
-$amis = date('n');
+$year = date('o');
+$monthNum = date('n');
 $Day = date("j");
 if(isset($_GET['next'])){
     $next = $_GET['next'];
-    $amis = $next;
+    $monthNum = $next;
 }
 if (isset($_GET['nextyear'])){
-    $asdf = $_GET['nextyear'];
-    $tari = $asdf;
+    $nextYear = $_GET['nextyear'];
+    $year = $nextYear;
 }
 
 if(isset($_GET['prev'])){
     $prev = $_GET['prev'];
-    $amis = $prev;
+    $monthNum = $prev;
 }
 if(isset($_GET['prevyear'])){
-    $asd = $_GET['prevyear'];
-    $tari = $asd;
+    $prevYear = $_GET['prevyear'];
+    $year = $prevYear;
 }
-$Month = date('F', mktime(0, 0, 0, $amis, 1, $tari));
+$Month = date('F', mktime(0, 0, 0, $monthNum, 1, $year));
 $count = 1;
-$co = 1;
-$Days = date("t", mktime(0, 0, 0, $amis, 1, $tari));
+$countOne = 1;
+$Days = date("t", mktime(0, 0, 0, $monthNum, 1, $year));
 $countDay = $Days + 1;
-$positionDate = date("N", mktime(0, 0, 0, $amis, 1, $tari));
+$positionDate = date("N", mktime(0, 0, 0, $monthNum, 1, $year));
 $variable = $positionDate -1;
 if($variable == 6 || $variable == 5 && $countDay > 31){
     for ($i = 0; $i < 6; $i++){
-        echo '<div class="divs'.$co.'">';
-        $co++;
+        echo '<div class="divs'.$countOne.'">';
+        $countOne++;
         for($j = 0; $j < 7; $j++){
             if ($i == 0){
                 if ($j < $variable){
@@ -52,8 +52,8 @@ if($variable == 6 || $variable == 5 && $countDay > 31){
     }
 }else{
     for ($i = 0; $i < 5; $i++){
-        echo '<div class="divs'.$co.'">';
-        $co++;
+        echo '<div class="divs'.$countOne.'">';
+        $countOne++;
         for($j = 0; $j < 7; $j++){
             if ($i == 0){
                 if ($j < $variable){
@@ -73,4 +73,4 @@ if($variable == 6 || $variable == 5 && $countDay > 31){
         echo '</div>';
     }
 }
-echo ',', $tari, ' ', $Month, ',', $Day, ',', $amis;
+echo ',', $year, ' ', $Month, ',', $Day, ',', $monthNum;

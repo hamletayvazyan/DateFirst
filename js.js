@@ -17,7 +17,6 @@ $( document ).ready(function() {
         }
     }).done(function (response) {
         masiv = response.split(',');
-        console.log(masiv);
         months.append(masiv[2]);
         day = parseInt(masiv[3]);
         matrix.append(masiv[1]);
@@ -30,19 +29,18 @@ $( document ).ready(function() {
         $('.divs5 div').slice(-2).addClass("special");
         $('.divs6 div').slice(-2).addClass("special");
         var nextear = parseInt(masiv[2]);
-        var count = masiv[4];
-        var asdf = parseInt(count);
+        var count = parseInt(masiv[4]);
         $('.next').on('click', function () {
-            asdf += 1;
-            if (asdf > 12){
+            count += 1;
+            if (count > 12){
                 nextear += 1;
-                asdf = 1;
+                count = 1;
             }
             $.ajax({
                 type: 'GET',
                 url: 'date.php',
                 data: {
-                    next: asdf,
+                    next: count,
                     nextyear: nextear
                 }
             }).done(function (event) {
@@ -56,20 +54,19 @@ $( document ).ready(function() {
                 $('.divs4 div').slice(-2).addClass("special");
                 $('.divs5 div').slice(-2).addClass("special");
                 $('.divs6 div').slice(-2).addClass("special");
-
             });
         });
         $('.prev').on('click', function () {
-            asdf -=1;
-            if(asdf == 0){
+            count -=1;
+            if(count == 0){
                 nextear -= 1;
-                asdf = 12;
+                count = 12;
             }
             $.ajax({
                 type: 'GET',
                 url: 'date.php',
                 data: {
-                    prev: asdf,
+                    prev: count,
                     prevyear: nextear
                 }
             }).done(function (event) {
@@ -83,7 +80,6 @@ $( document ).ready(function() {
                 $('.divs4 div').slice(-2).addClass("special");
                 $('.divs5 div').slice(-2).addClass("special");
                 $('.divs6 div').slice(-2).addClass("special");
-
             })
         });
     })
